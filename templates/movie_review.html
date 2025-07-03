@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Add New Movie</h1>
+    <h1>User Reviews for "{{ movie.title }}"</h1>
+
+    {% if reviews %}
+        {% for review, user in reviews %}
+            <div style="margin-bottom: 20px; border-bottom: 1px solid #ccc; padding-bottom: 10px;">
+                <p><strong>{{ user.displayname }}</strong> rated it {{ review.score }}/10</p>
+                {% if review.reviewtext %}
+                    <p>{{ review.reviewtext }}</p>
+                {% else %}
+                    <p><em>No written review.</em></p>
+                {% endif %}
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>No audience reviews yet.</p>
+    {% endif %}
+
+    <p><a href="{{ url_for('movie_detail', movie_id=movie.movieid) }}">⬅ Back to Movie Details</a></p>
+{% endblock %}

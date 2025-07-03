@@ -157,6 +157,25 @@ def movie_detail(movie_id):
     
     return render_template('movie_detail.html', movie=movie, in_watchlist=in_watchlist)
 
+@app.route('/movie/<int:movie_id>/user_reviews')
+def user_reviews(movie_id):
+    if 'username' not in session:
+        return redirect(url_for('login'))
+    
+    movie = Movies.query.get(movie_id)
+    if not movie:
+        flash('Movie not found.')
+        return redirect(url_for('movies'))
+    
+    current_user = User.query.filter_by(username=session['username']).first()
+    
+    reviews = db.session.query(UserRating, User).join(User).filter(
+        UserRating.movieid == movie_id
+    ).all()
+
+    return render_template('movie_review.html', movie=movie, reviews=reviews)
+
+
 @app.route('/add_to_watchlist/<int:movie_id>')
 def add_to_watchlist(movie_id):
     if 'username' not in session:

@@ -122,6 +122,8 @@
         <p><strong>Description:</strong><br>{{ movie.description }}</p>
     </div>
 
+    <a href="{{ url_for('user_reviews', movie_id=movie.movieid) }}" class="link-to">Check out other User Reviews</a>
+
     <hr>
 
     <div class="rating-form">

@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Add New Movie</h1>
+
+<form method="POST">
+    <div class="form-group">
+        <label>Title:</label>
+        <input type="text" name="title" required>
+    </div>
+    <div class="form-group">
+        <label>Genre:</label>
+        <select name="genre" required>
+            <option value="">Select Genre</option>
+            <option value="Action">Action</option>
+            <option value="Comedy">Comedy</option>
+            <option value="Drama">Drama</option>
+            <option value="Horror">Horror</option>
+            <option value="Romance">Romance</option>
+            <option value="Sci-Fi">Sci-Fi</option>
+            <option value="Thriller">Thriller</option>
+            <option value="Crime">Crime</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Director:</label>
+        <input type="text" name="director" required>
+    </div>
+    <div class="form-group">
+        <label>Cast:</label>
+        <input type="text" name="cast" placeholder="Comma-separated list" required>
+    </div>
+    <div class="form-group">
+        <label>Rating (Optional):</label>
+        <input type="number" name="rating" step="0.1" min="0" max="10">
+    </div>
+    <div class="form-group">
+        <label>Release Date:</label>
+        <input type="date" name="releasedate" required>
+    </div>
+    <div class="form-group">
+        <label>Description:</label>
+        <textarea name="description" rows="4" required></textarea>
+    </div>
+    <button type="submit" class="btn">Add Movie</button>
+    <a href="{{ url_for('admin') }}" class="btn" style="background-color: #666;">Cancel</a>
+</form>
+{% endblock %}

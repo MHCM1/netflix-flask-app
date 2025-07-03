@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>My Watchlist</h1>
+
+{% if movies %}
+    <div class="movie-grid">
+        {% for movie in movies %}
+        <div class="movie-card">
+            <h3>{{ movie.title }}</h3>
+            <p><strong>Genre:</strong> {{ movie.genre }}</p>
+            <p><strong>Director:</strong> {{ movie.director }}</p>
+            <p><strong>Year:</strong> {{ movie.releasedate.year }}</p>
+            <a href="{{ url_for('movie_detail', movie_id=movie.movieid) }}" class="btn">View Details</a>
+        </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <p>Your watchlist is empty. <a href="{{ url_for('movies') }}">Browse movies</a> to add some!</p>
+{% endif %}
+{% endblock %}
